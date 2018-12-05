@@ -36,5 +36,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "nokogiri", ("< 1.6" if RUBY_VERSION < "1.9") # Nokogiri >= 1.6 requires Ruby >= 1.9
   s.add_development_dependency 'appraisal', '~> 0.4'
   s.add_runtime_dependency "rack"
+  s.add_dependency "secure_headers"
 end
 

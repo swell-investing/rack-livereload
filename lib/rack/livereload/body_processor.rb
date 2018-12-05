@@ -75,7 +75,9 @@ module Rack
 
         @new_body.each do |line|
           if !@livereload_added && line['<head']
-            line.gsub!(HEAD_TAG_REGEX) { |match| %{#{match}#{template.result(binding)}} }
+            template_result = template.result(binding)
+            template_result.gsub!('type="text/javascript"', "type=\"text/javascript\" nonce=\"#{env[SecureHeaders::NONCE_KEY]}\"")
+            line.gsub!(HEAD_TAG_REGEX) { |match| %{#{match}#{template_result}} }
 
             @livereload_added = true
           end
